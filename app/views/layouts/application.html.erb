@@ -8,17 +8,63 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag "home" %>
+     
   </head>
 
-  <body>
-  <% if current_user%>
-    <%= link_to "logout", destroy_user_session_path  %>
-  <%else%>
-    <%=link_to "login", new_user_session_path%>  
-    <%=link_to "Register", new_user_registration_path%>  
-  <%end%>
+  <body class="background_color"> 
+  
+    <%# starting navbar code %>
+
+    <nav class="navbar navbar-expand-lg navbar-light primary_color">
+      <a class="navbar-brand marg-5" href="#">BUGZILLA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active marg-2 marg-25">
+          <span class="nav-link "><%= link_to "Home",root_path, class: "links"%></span>        
+          </li>
+          <li class="nav-item marg-2">
+            <span class="nav-link" ><%= link_to "Projects", projects_path, class: "links"%></span>
+          </li>
+          <li class="nav-item marg-2">
+            <span class="nav-link" ><%= link_to "Bugs", bugs_path, class: "links"%></span>
+          </li>
+          <li class="nav-item marg-2">
+            <span class="nav-link" ><%= link_to "Assigned Projects", project_users_path, class: "links"%></span>
+          </li>
+          <li class="nav-item marg-2">
+            <% if current_user%>
+              <span class="nav-link"><%= link_to "Logout", destroy_user_session_path, class: "links"  %></span>
+            <%else%>
+              <span class="nav-link inline"><%=link_to "Login", new_user_session_path, class: "links"%> </span>
+              <span class="nav-link inline marg-2"><%=link_to "Register", new_user_registration_path, class: "links"%> </span>
+            <%end%>
+          </li>    
+        </ul>
+      </div>
+    </nav>
+
+    <%# Ending of navbar code %>
+  
+  
+ 
+    
+  
+     
+      
+  
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+   
   </body>
 </html>

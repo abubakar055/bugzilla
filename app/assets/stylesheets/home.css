@@ -1,0 +1,52 @@
+.background_color{
+    background-color: #F0EBE3;
+}
+
+.primary_color{
+    background-color: #576F72;
+    
+}
+
+.inline{
+    display: inline-block;
+}
+
+.marg-5{
+    margin-left: 5rem;
+}
+
+.marg-2{
+    margin-left: 2rem;
+}
+
+.marg-25{
+    margin-left: 25rem;
+}
+
+.links{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.links:hover,
+.links:active,
+.links:visited{
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+.layout_center{
+    margin-top: 100px;
+    margin-left:800px;
+    
+}
+
+.text-center{
+    text-align: center;
+}
+
+.gray-color{
+    color: gray;
+}

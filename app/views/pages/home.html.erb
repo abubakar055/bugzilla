@@ -1,2 +1,29 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+
+ <% if user_signed_in? %>
+    <div  >
+      <%if current_user.user_type=="Manager" %>
+        <h1>Welcome <%=current_user.name%> to the project management Dashboard </h1>
+         <%=link_to "View projects",projects_path%>
+        <%=link_to "Add new project",new_project_path%>
+        <%=link_to "Assign developers to projects", new_project_user_path %>
+      <%elsif current_user.user_type=="QA" %>
+      <h1 class="text-center gray-color" >Welcome <%=current_user.name%> to the project management Dashboard <br> You are signed in as QA </h1>
+        <%=link_to "Add new bug",new_bug_path%>
+      <%else %>
+        <h1 class="text-center gray-color" >Welcome <%=current_user.name%> to the project management Dashboard <br> You are signed in as Developer </h1>
+        <div class="gray-color" style="margin-left:680px; margin-top:100px" >
+          <h3>You are assigned on the following projects</h3>
+          <ul>
+            <%@user_projects.each do |project|%>
+             <h5> <li style="margin-left:140px; margin-top:30px" ><%=project.title%> </li></h5>
+             <p style="text-align:center;margin-right:500px;margin-left:-180px;"><%=project.body%></p>
+            <%end%>
+          </ul>
+        </div>
+      <%end%>
+    </div>
+  <%else%>
+    <h1 class="text-center" style="margin-top:300px;">Welcome to Bugzilla verify yourself to get to dashboard</h1>
+<%end%>
+

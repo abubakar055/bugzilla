@@ -1,0 +1,64 @@
+<%= form_with(model: bug) do |form| %>
+  <% if bug.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
+
+      <ul>
+        <% bug.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :deadline, style: "display: block" %>
+    <%=datetime_select(:bug, :deadline) %>
+  </div>
+
+  <div>
+    <%= form.label :bugtype, style: "display: block" %>
+    <%= form.select :bugtype, [ "feature", "bug" ] %>
+  </div>
+
+  <div>
+    <%= form.label :status,"status", style: "display: block" %>
+    <%= form.select :status, [ "new_ticket", "started", "resolved", "completed" ] %>
+   
+  </div>
+  
+  <div>
+    <%= form.label :image, "or image URL" %><br />
+    <%= form.file_field :image %>
+  </div> 
+
+   <div>
+    <%= form.label :ProjectId,"Projects", style: "display: block" %>
+  <%=collection_select(:bug, :project_id,  @projects, :id, :title, prompt: true)%>
+  </div>
+
+   <div>
+    <%= form.label :UserId, style: "display: block" %>
+    <%=collection_select(:bug, :developer_id, @developers, :id, :email, prompt: true)%>
+ 
+  </div>
+
+   <div>
+  
+    <%=hidden_field(:bug, :creator_id, :value => current_user.id)%>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
